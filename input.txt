@@ -1,0 +1,17 @@
+5
+AABCC
+DDBEE
+FGGGH
+FIJJK
+FIIIK
+A:4-
+B:1-
+C:1-
+D:2/
+E:6+
+F:60*
+G:7+
+H:3+
+I:60*
+J:4-
+K:5+
