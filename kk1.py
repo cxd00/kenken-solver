@@ -1,3 +1,4 @@
+from copy import copy, deepcopy
 count = 1
 
 
@@ -9,7 +10,7 @@ def solve():
 
 
 def readFile():
-    f = map(str.split, open("input2.txt"))
+    f = map(str.split, open("input.txt"))
 
     boardSize = int(f[0][0])
     board = []
@@ -72,10 +73,20 @@ def mathCheck(solution, rule, piece):
         if int(value) == 0:
             piece.emptyCells = piece.emptyCells + 1
 
+    if not piece.isFilled:
+        # cuts off the search when there's no way for the current values to get to the answer
+        if operation == '+':
+            empty = total + piece.emptyCells * len(solution)
+            if total > float(rule[0]) or empty < float(rule[0]):
+                return 0
+        if operation == '*':
+            empty = total * len(solution) ** piece.emptyCells
+            if total > float(rule[0]) or empty < float(rule[0]):
+                return 0
+        return 1
+
     if piece.isFilled and total == float(rule[0]):
         piece.isSolved = 1
-        return 1
-    if not piece.isFilled:
         return 1
     return 0
 
@@ -123,6 +134,25 @@ def counter():
     count = count + 1
 
 
+def findMRV(board, coordinate, solution, values):
+    i = coordinate[0]
+    j = coordinate[1]
+    mrv = {}
+    soln = deepcopy(solution)
+
+    for num in values:
+        if j == len(board) - 1:
+            i = i + 1
+            j = 0
+        else:
+            j = j + 1
+        if i == len(board) or j == len(board):
+            mrv[num] = 1
+        else:
+            mrv[num] = len(findRemainingValues(soln, (i, j), range(1, len(board) + 1)))
+    return sorted(mrv.items(), key=lambda x: x[1])
+
+
 def backtrack0(board, coordinate, pieces, solution, rules):
     counter()
     i = coordinate[0]
@@ -143,7 +173,9 @@ def backtrack0(board, coordinate, pieces, solution, rules):
         piece.coords[coordinate] = 0
         return 0
 
-    for num in findRemainingValues(solution, coordinate, range(1, len(board) + 1)):
+    mrv = findMRV(board, coordinate, solution, valuesToTry)
+    for num in mrv:
+        num = num[0]
         solution[i][j] = num
         for cell in range(j + 1, len(board)):
             solution[i][cell] = 0
@@ -152,7 +184,6 @@ def backtrack0(board, coordinate, pieces, solution, rules):
         for val in piece.coords.keys():
             if piece.coords[val] == 0:
                 piece.isFilled = 0
-
         mathPass = mathCheck(solution, rule, piece)
         if len(valuesToTry) < 2 and not mathPass:
             solution[i][j] = 0
