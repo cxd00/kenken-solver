@@ -1,16 +1,16 @@
-from copy import copy, deepcopy
+from copy import deepcopy
 count = 1
 
 
 def solve():
     board, rules, boardSize, pieces = readFile()
     solution = [[0 for z in range(boardSize)] for z in range(boardSize)]
-    if backtrack0(board, (0, 0), pieces, solution, rules):
+    if backtrack1(board, (0, 0), pieces, solution, rules):
         return solution
 
 
 def readFile():
-    f = map(str.split, open("input.txt"))
+    f = map(str.split, open("input3.txt"))
 
     boardSize = int(f[0][0])
     board = []
@@ -131,10 +131,13 @@ def findRemainingValues(solution, coordinate, valuesToTry):
 
 def counter():
     global count
+    if count % 500 == 0:
+        print count
     count = count + 1
 
 
 def findMRV(board, coordinate, solution, values):
+    # returns the post-constraints-filter values, most constrained first
     i = coordinate[0]
     j = coordinate[1]
     mrv = {}
@@ -153,7 +156,7 @@ def findMRV(board, coordinate, solution, values):
     return sorted(mrv.items(), key=lambda x: x[1])
 
 
-def backtrack0(board, coordinate, pieces, solution, rules):
+def backtrack1(board, coordinate, pieces, solution, rules):
     counter()
     i = coordinate[0]
     j = coordinate[1]
@@ -194,10 +197,10 @@ def backtrack0(board, coordinate, pieces, solution, rules):
 
         if mathPass:
             if j == len(board) - 1:
-                if backtrack0(board, (i + 1, 0), pieces, solution, rules):
+                if backtrack1(board, (i + 1, 0), pieces, solution, rules):
                     return 1
             else:
-                if backtrack0(board, (i, j + 1), pieces, solution, rules):
+                if backtrack1(board, (i, j + 1), pieces, solution, rules):
                     return 1
     solution[i][j] = 0
     piece.coords[coordinate] = 0
