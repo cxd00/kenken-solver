@@ -10,7 +10,7 @@ import numpy as np
 def solve():
     board, rules, boardSize, pieces = readFile()
     population = generatePopulation([], board, rules, pieces)
-    x, y = geneticSearch(population, board, rules, pieces)
+    x, y = geneticSearch(population, board, rules)
     return x, x.fitness, y
 
 
@@ -27,7 +27,7 @@ def checkForRepeats(solution):
     return 0
 
 
-def geneticSearch(population, board, rules, pieces):
+def geneticSearch(population, board, rules):
     # genetic algorithm attempt:
     # takes a population and "reproduces" over randomly generated members of the population
     # mutates when the best 3 values become stale
@@ -139,11 +139,11 @@ def reproduce(solution1, solution2, board, rules):
     sol2.grid[y] = temp1x
     sol2.grid[x] = temp1y
 
-    sol1.fitness = getFitness(sol1, board)
-    sol2.fitness = getFitness(sol2, board)
-
     updatePieces(board, sol1, rules)
     updatePieces(board, sol2, rules)
+
+    sol1.fitness = getFitness(sol1, board)
+    sol2.fitness = getFitness(sol2, board)
 
     return sol1, sol2
 

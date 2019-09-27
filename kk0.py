@@ -9,7 +9,7 @@ def solve():
 
 
 def readFile():
-    f = map(str.split, open("input3.txt"))
+    f = map(str.split, open("input.txt"))
 
     boardSize = int(f[0][0])
     board = []

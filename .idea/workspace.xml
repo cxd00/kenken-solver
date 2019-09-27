@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e8227ee0-3149-4c9c-9b27-cab1191b0b8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kk0.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kk1.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kk2.3.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kk2.ga.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.ga.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kk2.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +38,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.kk2.2">
+  <component name="RunManager" selected="Python.kk2.3">
     <configuration name="kk0" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="COMP 560" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,11 +123,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="kk2.3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="COMP 560" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kk2.localSearch.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.kk2.3" />
+        <item itemvalue="Python.kk2" />
         <item itemvalue="Python.kk2.2" />
         <item itemvalue="Python.kk1" />
-        <item itemvalue="Python.kk2" />
         <item itemvalue="Python.kk0" />
       </list>
     </recent_temporary>
@@ -162,19 +184,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kk2.py</url>
-          <line>160</line>
-          <option name="timeStamp" value="62" />
+          <url>file://$PROJECT_DIR$/kk2.ga.py</url>
+          <line>126</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kk2.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kk2.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="76" />
+          <url>file://$PROJECT_DIR$/kk2.ga.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
