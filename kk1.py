@@ -1,5 +1,5 @@
 from copy import deepcopy
-count = 1
+count = 1  # counts iterations
 
 
 def solve():
@@ -10,6 +10,7 @@ def solve():
 
 
 def readFile():
+    # initial formatting done here
     f = map(str.split, open("input3.txt"))
 
     boardSize = int(f[0][0])
@@ -37,6 +38,8 @@ def readFile():
     for line in f[boardSize + 1:]:
         line = line[0].strip("['']").split(':')
         rules[line[0]] = (line[1][:-1], line[1][-1:])
+        if rules[line[0]][0] == '':
+            rules[line[0]] = (rules[line[0]][1], '+')
 
     return board, rules, boardSize, pieces
 
@@ -54,18 +57,21 @@ def findRepeats(solution, coordinate, number):
 
 
 def mathCheck(solution, rule, piece):
-    # checks if the math for each piece works out
-    operation = rule[1]
-
+    # checks if the math for each piece works out, returns 0 if the math does not work
     # for one-cell pieces
     if len(piece.coords) == 1:
         if int(piece.coords.values()[0]) == int(rule[0]):
             piece.isSolved = 1
             return 1
         return 0
+    operation = rule[1]
 
     big = piece.coords.values()[0]
     small = piece.coords.values()[1]
+    if big < small:
+        big = piece.coords.values()[1]
+        small = piece.coords.values()[0]
+
     total = operationIterator(operation, big, small, piece, solution)
     piece.emptyCells = 0
 
@@ -74,15 +80,22 @@ def mathCheck(solution, rule, piece):
             piece.emptyCells = piece.emptyCells + 1
 
     if not piece.isFilled:
-        # cuts off the search when there's no way for the current values to get to the answer
+        # cuts off the search when there's no way for the current values to get to the answer based on calculations
+        empty = total
         if operation == '+':
-            empty = total + piece.emptyCells * len(solution)
+            for x in range(0, piece.emptyCells):
+                empty = empty + len(solution) - x
             if total > float(rule[0]) or empty < float(rule[0]):
                 return 0
         if operation == '*':
-            empty = total * len(solution) ** piece.emptyCells
+            for x in range(0, piece.emptyCells):
+                empty = empty * (len(solution) - x)
             if total > float(rule[0]) or empty < float(rule[0]):
                 return 0
+            for divisor in piece.coords.values():
+                if not divisor == 0:
+                    if not float(rule[0]) % divisor == 0:
+                        return 0
         return 1
 
     if piece.isFilled and total == float(rule[0]):
@@ -95,15 +108,9 @@ def operationIterator(operation, big, small, piece, solution):
     # checks which operation and performs said operation
     total = 0
     if operation == '-':
-        if big < small:
-            big = piece.coords.values()[1]
-            small = piece.coords.values()[0]
         total = big - small
 
     elif operation == '/':
-        if big < small:
-            big = piece.coords.values()[1]
-            small = piece.coords.values()[0]
         if not small == 0:
             total = big / small
 
@@ -129,15 +136,8 @@ def findRemainingValues(solution, coordinate, valuesToTry):
     return copyValuesToTry
 
 
-def counter():
-    global count
-    if count % 500 == 0:
-        print count
-    count = count + 1
-
-
 def findMRV(board, coordinate, solution, values):
-    # returns the post-constraints-filter values, most constrained first
+    # returns the post-constraints-filter values, most constrained first. This prunes the tree.
     i = coordinate[0]
     j = coordinate[1]
     mrv = {}
@@ -156,7 +156,18 @@ def findMRV(board, coordinate, solution, values):
     return sorted(mrv.items(), key=lambda x: x[1])
 
 
+def counter():
+    # just for returning the number of iterations
+    global count
+    count = count + 1
+    if count > 10000000:
+        "Program has recursed through 10 million nodes. Would advise stopping the program."
+
+
 def backtrack1(board, coordinate, pieces, solution, rules):
+    # this is the main backtracking (improved) function. Finds all possible values, given the constraints, and
+    # returns them in order of most to least constrained. Recurses until the grid is full, correctly.
+
     counter()
     i = coordinate[0]
     j = coordinate[1]
@@ -208,6 +219,7 @@ def backtrack1(board, coordinate, pieces, solution, rules):
 
 
 class Piece:
+    # this class creates each piece
 
     def __init__(self, letter):
         self.isSolved = 0
@@ -217,13 +229,15 @@ class Piece:
         self.emptyCells = len(self.coords)
 
 
+# printing...
 sol = solve()
+
 row = ''
 for a in range(0, len(sol)):
     for b in range(0, len(sol)):
         row = row + ' ' + str(sol[a][b])
     print row
     row = ''
-print count
+print "Improved Backtracking: Generated with {} recursive calls.".format(count)
 
 

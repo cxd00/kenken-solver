@@ -9,7 +9,7 @@ def solve():
 
 
 def readFile():
-    f = map(str.split, open("input2.txt"))
+    f = map(str.split, open("input3.txt"))
 
     boardSize = int(f[0][0])
     board = []
@@ -121,9 +121,13 @@ def findRemainingValues(solution, coordinate, valuesToTry):
 def counter():
     global count
     count = count + 1
+    if count > 10000000:
+        "Program has recursed through 10 million nodes. Would advise stopping the program and trying kk1.py."
 
 
 def backtrack0(board, coordinate, pieces, solution, rules):
+    # simple backtracking search: finds values based on rule and repeat constraints for rows
+    # and columns. Recurses until the grid is full."
     counter()
     i = coordinate[0]
     j = coordinate[1]
@@ -190,6 +194,6 @@ for a in range(0, len(sol)):
         row = row + ' ' + str(sol[a][b])
     print row
     row = ''
-print count
+print "Improved Backtracking: Generated with {} recursive calls.".format(count)
 
 
