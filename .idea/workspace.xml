@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8227ee0-3149-4c9c-9b27-cab1191b0b8d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/kk2.localSearch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kk0.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kk1.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kk2.3.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kk2.3.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/kk2.ga.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.ga.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kk2.py" beforeDir="false" afterPath="$PROJECT_DIR$/kk2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kk2.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
